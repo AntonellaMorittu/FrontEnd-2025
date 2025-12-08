@@ -71,7 +71,7 @@ const fetchData = async () => {
     container.innerText = data.activity
 
   } catch (error) {
-    constainer.innerText = error
+    container.innerText = error
   }
 }
 
@@ -89,7 +89,7 @@ async function fetchDataFunction() {
     container.innerText = data.activity
 
   } catch (error) {
-    constainer.innerText = error
+    container.innerText = error
   }
 }
 
