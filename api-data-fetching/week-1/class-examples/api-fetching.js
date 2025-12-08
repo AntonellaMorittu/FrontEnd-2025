@@ -19,7 +19,7 @@ It's commonly used in web development to interact with APIs (Application Program
  */
 /* 1. **Making a Request:**
    - You call the `fetch()` method, passing in the URL of the resource you want to fetch as a parameter. For example:
-   fetch('https://api.example.com/data')
+   fetch('https://apis.scrimba.com/bored/api/activity')
 
 
 2. **Asynchronous Nature:**
@@ -31,12 +31,69 @@ It's commonly used in web development to interact with APIs (Application Program
    Typically, you handle the response in a callback function.
  */
 
-// API example https://www.boredapi.com/
+// API example https://apis.scrimba.com/bored/documentation
+
+
+const URL = "https://apis.scrimba.com/bored/api/activity"
+
+const container = document.getElementById("activity")
+const findActivityBtn = document.getElementById("fetchActivity")
+
+// SYNTAX 1 - fetch .then
+const callApi = () => {
+  fetch(URL).then((response) => {
+    if (!response.ok) {
+      throw new Error("Network response was not ok")
+    }
+    return response.json()
+  }).then((data) => {
+    container.innerText = data.activity
+    console.log(data)
+  }).catch((error) => {
+    container.innerText = error
+    console.error("Fetch error:", error)
+  })
+}
 
 
 
-console.log("Talking about APIs and Promises");
+// SYNTAX 2 - ASYNC/AWAIT + TRY/CATCH
 
+const fetchData = async () => {
+  try {
+    const response = await fetch(URL)
+
+    if (!response.ok) {
+      throw new Error("Network response was not ok")
+    }
+
+    const data = await response.json()
+    container.innerText = data.activity
+
+  } catch (error) {
+    constainer.innerText = error
+  }
+}
+
+// SYNTAX 3
+
+async function fetchDataFunction() {
+  try {
+    const response = await fetch(URL)
+
+    if (!response.ok) {
+      throw new Error("Network response was not ok")
+    }
+
+    const data = await response.json()
+    container.innerText = data.activity
+
+  } catch (error) {
+    constainer.innerText = error
+  }
+}
+
+findActivityBtn.addEventListener("click", fetchData)
 /* 4. **Handling Errors:**
    - You can use `.catch()` to handle errors that might occur during the fetch operation, such as network problems or server errors.
 
