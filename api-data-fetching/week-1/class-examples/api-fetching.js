@@ -42,14 +42,18 @@ const findActivityBtn = document.getElementById("fetchActivity")
 // SYNTAX 1 - fetch .then
 const callApi = () => {
   fetch(URL).then((response) => {
+    // It detects HTTP status errors (non-2xx responses), not actual network failures.    
     if (!response.ok) {
       throw new Error("Network response was not ok")
     }
     return response.json()
   }).then((data) => {
+    // Use the data retrieved from the server
     container.innerText = data.activity
     console.log(data)
+    // catches other errors like 404 or 500 Network errors (e.g., if the user is offline, or the server is unreachable or internal unexpected problems)
   }).catch((error) => {
+    // Handle errors, such as network issues or invalid responses
     container.innerText = error
     console.error("Fetch error:", error)
   })
@@ -72,6 +76,7 @@ const fetchData = async () => {
 
   } catch (error) {
     container.innerText = error
+    console.error("Fetch error:", error)
   }
 }
 
