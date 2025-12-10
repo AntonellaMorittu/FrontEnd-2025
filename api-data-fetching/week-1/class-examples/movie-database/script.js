@@ -25,7 +25,7 @@ const searchMovie = async () => {
       console.log("movie", movie)
       displayResults(movie)
     } else {
-      results.textContent = ""
+      results.textContent = "Invalid search, please try with another title."
     }
   } catch (error) {
     results.textContent = error
