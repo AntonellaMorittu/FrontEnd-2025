@@ -1,0 +1,24 @@
+{
+  "artists": {
+    "href": "https://api.spotify.com/v1/search?offset=0&limit=1&query=oasis&type=artist",
+    "limit": 1,
+    "next": "https://api.spotify.com/v1/search?offset=1&limit=1&query=oasis&type=artist",
+    "offset": 0,
+    "previous": null,
+    "total": 100,
+    "items": [
+      {
+        "external_urls": {},
+        "followers": {},
+        "genres": [],
+        "href": "https://api.spotify.com/v1/artists/2DaxqgrOhkeH0fpeiQq2f4",
+        "id": "2DaxqgrOhkeH0fpeiQq2f4",
+        "images": [],
+        "name": "Oasis",
+        "popularity": 83,
+        "type": "artist",
+        "uri": "spotify:artist:2DaxqgrOhkeH0fpeiQq2f4"
+      }
+    ]
+  }
+}
