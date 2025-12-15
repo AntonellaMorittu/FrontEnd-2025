@@ -1,4 +1,3 @@
-
 window.addEventListener("DOMContentLoaded", () => {
   const favContainer = document.getElementById("favourites");
   const favs = JSON.parse(localStorage.getItem("favourites") || "[]");
@@ -11,7 +10,7 @@ window.addEventListener("DOMContentLoaded", () => {
     favs.forEach(movie => {
       const div = document.createElement("div");
       div.className = "fav";
-      div.innerHTML = `<a target="_blank" href="https://www.imdb.com/title/${movie.id}">
+      div.innerHTML = `<a target="_blank" href="https://www.imdb.com/title/${movie.imdbID}">
         <h3>${movie.Title} (${movie.Year})</h3>
         <img src="${movie.Poster}" />
         </a>
