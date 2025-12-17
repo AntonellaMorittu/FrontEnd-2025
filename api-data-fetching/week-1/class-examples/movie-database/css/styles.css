@@ -1,26 +1,32 @@
 /* General Styles */
+
 body {
   font-family: Arial;
-  background: black;
+  background: #242424;
   color: white;
-  margin: 0;
-  padding: 0;
   text-align: center;
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 20px;
+
 }
 
 #results {
-  padding: 12px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  justify-items: center;
+  margin-top: 30px;
 }
 
 header {
   display: flex;
   justify-content: flex-end;
   padding: 10px 20px;
-  background: #111;
 }
 
 header a {
-  color: yellow;
+  color: hotpink;
   text-decoration: none;
   font-weight: bold;
   margin-left: 10px;
@@ -29,6 +35,7 @@ header a {
 h1 {
   margin: 20px 0;
 }
+
 
 #searchInput {
   padding: 8px 12px;
@@ -45,21 +52,37 @@ h1 {
   background-color: rgb(44, 44, 44);
 }
 
-.movie, .fav {
-  background: white;
-  color: black;
-  margin: 20px auto;
-  width: 300px;
+.movie {
   padding: 10px;
-  border-radius: 5px;
+  cursor: pointer;
+  text-align: center; 
+  max-width: 300px;
+}
+
+.movie img {
+  max-width: 280px;
+  max-height: 400px;
+  min-height: 400px;
+}
+
+.movie img:hover {
+  opacity: 70%;
 }
 
 .fav {
   margin: 20px;
 }
 
-.movie img {
-  max-width: 100%;
+
+.title, p {
+  color: white;
+  font-size: 16px;
+  margin: 5px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: center;
+  width: 100%;
 }
 
 button {
@@ -74,6 +97,8 @@ button {
   margin-top: 20px;
 }
 
-#favourites {
-  display: flex;
+
+a {
+  color: hotpink;
+  text-decoration: none;
 }

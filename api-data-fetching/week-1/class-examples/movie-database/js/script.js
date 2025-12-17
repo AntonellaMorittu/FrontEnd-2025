@@ -28,7 +28,7 @@ const searchMovie = async () => {
     return;
   }
 
-  const url = `${apiUrl}?apikey=${apiKey}&t=${encodeURIComponent(searchValue)}`;
+  const url = `${apiUrl}?apikey=${apiKey}&s=${encodeURIComponent(searchValue)}`;
 
   try {
     // Handle the response data here
@@ -103,39 +103,45 @@ const removeFromFavourites = (movieId) => {
 };
 
 
-const displayResults = (movie) => {
-  results.innerHTML = "";
+const displayResults = (data) => {
+  results.innerHTML = ""; // Clear previous results
 
-  const title = movie.Title;
-  const year = movie.Year;
-  const poster = movie.Poster;
-  const movieId = movie.imdbID;
-  const isFav = isInFavourites(movieId); // Check if already in favourites
+  if (!data.Search || data.Search.length === 0) {
+    results.innerHTML = "<p>No results found.</p>";
+    return;
+  }
 
-  const movieDiv = document.createElement("div");
-  movieDiv.classList.add("movie");
+  data.Search.forEach((movie) => {
+    const title = movie.Title;
+    const year = movie.Year;
+    const poster = movie.Poster !== "N/A" ? movie.Poster : "./no-poster.svg";
 
-  movieDiv.innerHTML = `<a target="_blank" href="https://www.imdb.com/title/${movieId}">
-  <h2>${title} (${year})</h2>
-  ${poster !== "N/A"
-      ? `<img src=${poster} alt="${title} poster"></img>
-       `
-      : `<div></div>`
-    }
-  </a>
-  <button id="favoriteBtn">${isFav ? "Remove from Favourites" : "Add to Favourites"}</button>
-  `;
+    const movieId = movie.imdbID;
+    const isFav = isInFavourites(movieId); // Check if already in favourites
 
-  const favoriteButton = movieDiv.querySelector('#favoriteBtn');
-  favoriteButton.addEventListener('click', () => {
-    if (isInFavourites(movieId)) {
-      removeFromFavourites(movieId);
-      favoriteButton.textContent = "Add to Favourites";
-    } else {
-      addToFavourites(movie);
-      favoriteButton.textContent = "Remove from Favourites";
-    }
+    const movieDiv = document.createElement("div");
+    movieDiv.classList.add("movie");
+
+    movieDiv.innerHTML = `
+      <a target="_blank" href="https://www.imdb.com/title/${movie.imdbID}">
+        <h2 class="title">${title}</h2>
+        <p>${year}</p>
+       <img src="${poster}" alt="${title} poster">
+      </a>
+      <button class="favoriteBtn">${isFav ? "Remove from Favourites" : "Add to Favourites"}</button>
+    `;
+    
+    const favoriteButton = movieDiv.querySelector(".favoriteBtn");
+    favoriteButton.addEventListener("click", () => {
+      if (isInFavourites(movieId)) {
+        removeFromFavourites(movieId);
+        favoriteButton.textContent = "Add to Favourites";
+      } else {
+        addToFavourites(movie);
+        favoriteButton.textContent = "Remove from Favourites";
+      }
+    });
+
+    results.appendChild(movieDiv);
   });
-
-  results.appendChild(movieDiv);
 };
