@@ -90,7 +90,6 @@ const addToFavourites = (movie) => {
 
   fav.push(favMovie);
   saveFavourites(fav);
-  alert("Added to favourites!");
 };
 
 
@@ -99,7 +98,6 @@ const removeFromFavourites = (movieId) => {
   // .filter() is an array method that creates a new array containing only the elements that satisfy a condition.
   const updatedFav = fav.filter(m => m.imdbID !== movieId);
   saveFavourites(updatedFav);
-  alert("Removed from favourites!");
 };
 
 
@@ -128,17 +126,22 @@ const displayResults = (data) => {
         <p>${year}</p>
        <img src="${poster}" alt="${title} poster">
       </a>
-      <button class="favoriteBtn">${isFav ? "Remove from Favourites" : "Add to Favourites"}</button>
+       <button 
+        class="favoriteBtn" 
+        aria-label="Toggle favourite"
+      >
+        ${isFav ? "💖" : "🤍"}
+      </button>
     `;
-    
+
     const favoriteButton = movieDiv.querySelector(".favoriteBtn");
     favoriteButton.addEventListener("click", () => {
       if (isInFavourites(movieId)) {
         removeFromFavourites(movieId);
-        favoriteButton.textContent = "Add to Favourites";
+        favoriteButton.textContent = "🤍";
       } else {
         addToFavourites(movie);
-        favoriteButton.textContent = "Remove from Favourites";
+        favoriteButton.textContent = "💖";
       }
     });
 

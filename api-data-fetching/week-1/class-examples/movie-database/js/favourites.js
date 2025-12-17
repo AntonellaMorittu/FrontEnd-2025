@@ -26,7 +26,7 @@ window.addEventListener("DOMContentLoaded", () => {
         <p>${movie.Year}</p>
        <img src="${poster}" alt="${movie.Title} poster">
       </a>
-      <button class="favToggleBtn">${isFav ? "Remove from Favourites" : "Add to Favourites"}</button>
+      <button class="favToggleBtn">${isFav ? "Remove from 💖" : "Add to Favourites"}</button>
     `;
 
 
@@ -42,7 +42,6 @@ window.addEventListener("DOMContentLoaded", () => {
           localStorage.setItem("favourites", JSON.stringify(updatedFavs));
           // removes the whole movie card from the page
           movieDiv.remove(); // remove from page immediately
-          alert("Removed from favourites!");
         }
 
         // If container is empty, show the empty message
