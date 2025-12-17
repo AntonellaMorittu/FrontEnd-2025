@@ -3,7 +3,7 @@
 console.log("Movie database");
 
 const apiKey = "bbc47393";
-const apiUrl = "http://www.omdbapi.com/";
+const apiUrl = "https://www.omdbapi.com/";
 const results = document.getElementById("results");
 const searchInput = document.getElementById("searchInput");
 
